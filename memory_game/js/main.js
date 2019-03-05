@@ -36,7 +36,6 @@ var flipCard = function () {
     console.log("User flipped " + cards[cardID].suit);
     console.log("User flipped " + cards[cardID].cardImage);
     cardsInPlay.push(cards[cardID].rank);
-    //is this wehre this part goes? maybe because checkForMatch is the If statement.  From the instructions. this is wrong.  need to use this?
     this.setAttribute('src',cards[cardID].cardImage);
     checkForMatch();
 }
@@ -45,7 +44,6 @@ var createBoard = function () {
     for (i = 0; i < cards.length; i++) {
         var cardElement = document.createElement('img');
         cardElement.setAttribute('src', "images/back.png");
-        //not sure if img and src need to be in double quotes ranter than single
         cardElement.setAttribute('data-id', i);
         cardElement.addEventListener('click', flipCard);
         document.getElementById("game-board").appendChild(cardElement);
@@ -55,3 +53,18 @@ var createBoard = function () {
 
 createBoard();
 
+
+var resetButton = function () {
+if (cardsInPlay.length > 2) {
+    alert("Keep Playing");
+} else {
+    //added to clear the game-board
+    var removeCard = document.getElementById("game-board");
+    while (removeCard.firstChild) {
+    removeCard.removeChild(removeCard.firstChild);
+}
+    cardsInPlay.length = 0;
+    createBoard();
+
+    }
+        };
